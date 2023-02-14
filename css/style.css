@@ -49,12 +49,12 @@ body {
 
 /* INFO BOX */
 .text-box {
-  max-width: 40%;
-  position: relative;
+  position: absolute;
   top: 50%;
-  left: 70%;
+  left: 50%;
   transform: translate(-50%, -50%);
   /* backface-visibility: hidden; */
+  text-align: center;
 }
 /* HEADING */
 .heading-primary {
@@ -64,39 +64,46 @@ body {
   letter-spacing: 17px;
   line-height: 1.6;
   cursor: pointer;
-
-  animation: moveInLeft 1s ease-out;
+  margin-bottom: 60px;
 }
 .heading-primary span {
+  display: block;
+}
+
+.heading-primary span:nth-child(1) {
+  animation: moveInLeft 1s ease-out;
+}
+.heading-primary span:nth-child(2) {
   transition: 0.5s linear;
   font-family: "Allura", cursive;
+  animation: moveInRight 1s ease-out;
 }
-.heading-primary span:hover {
+.heading-primary span:nth-child(2):hover {
   margin-left: 10px;
 }
 
-.heading-primary:hover span {
+.heading-primary span:nth-child(2):hover {
   color: #fff;
   text-shadow: 0 0 10px #0a1018, 0 0 20px #0a1018, 0 0 40px #0a1018;
 }
 
-.about-info {
+/* .about-info {
   color: #131f2f;
   font-size: 20px;
   line-height: 1.6;
   font-weight: 600;
   letter-spacing: 2px;
-
   animation: moveInRight 1s ease-out;
-}
+} */
 
 @keyframes moveInLeft {
   0% {
     opacity: 0;
     transform: translateX(-100px);
   }
-  /* 80% {
-  } */
+  80% {
+    transform: translateX(20px);
+  }
   100% {
     opacity: 100;
     transform: translateX(0);
@@ -108,8 +115,70 @@ body {
     opacity: 0;
     transform: translateX(100px);
   }
+  80% {
+    transform: translateX(-20px);
+  }
   100% {
     opacity: 100;
     transform: translateX(0);
+  }
+}
+
+/* BUTTON */
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px 40px;
+  border-radius: 100px;
+  position: relative;
+}
+.btn-white {
+  background-color: #eff5fd;
+  color: #131f2f;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+.btn-white::after {
+  background-color: #eff5fd;
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 100;
+    transform: translateY(0);
   }
 }
